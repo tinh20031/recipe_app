@@ -7,23 +7,23 @@ export default function BookmarkScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollView} showsVerticalScrollIndicator={false}>
-        <Text style={styles.title}>Thực đơn đã lưu</Text>
-        <View style={styles.cardsContainer}>
-          {/* Card 1 */}
-          <View style={styles.card}>
-            <Image
+            <Text style={styles.title}>Thực đơn đã lưu</Text>
+          <View style={styles.cardsContainer}>
+            {/* Card 1 */}
+            <View style={styles.card}>
+                <Image
               source={{ uri: "https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=2069&auto=format&fit=crop" }}
-              style={styles.cardImage}
-            />
+                  style={styles.cardImage}
+                />
             <View style={styles.overlayTop}>
-              <View style={styles.ratingContainer}>
+                  <View style={styles.ratingContainer}>
                 <FontAwesome name="star" size={12} color="#FFD700" />
-                <Text style={styles.ratingText}>4.0</Text>
-              </View>
-              <TouchableOpacity>
+                    <Text style={styles.ratingText}>4.0</Text>
+                    </View>
+                    <TouchableOpacity>
                 <FontAwesome name="bookmark" size={22} color="#FFD700" />
-              </TouchableOpacity>
-            </View>
+                    </TouchableOpacity>
+                  </View>
             <View style={styles.cardContent}>
               <Text style={styles.foodTitle}>Sườn nướng truyền thống</Text>
               <View style={styles.timeRow}>
@@ -32,40 +32,40 @@ export default function BookmarkScreen() {
               </View>
             </View>
           </View>
-          {/* Card 2 */}
-          <View style={styles.card}>
-            <Image
+            {/* Card 2 */}
+            <View style={styles.card}>
+                <Image
               source={{ uri: "https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?q=80&w=2070&auto=format&fit=crop" }}
-              style={styles.cardImage}
-            />
+                  style={styles.cardImage}
+                />
             <View style={styles.overlayTop}>
-              <View style={styles.ratingContainer}>
+                  <View style={styles.ratingContainer}>
                 <FontAwesome name="star" size={12} color="#FFD700" />
-                <Text style={styles.ratingText}>4.0</Text>
-              </View>
-              <TouchableOpacity>
+                    <Text style={styles.ratingText}>4.0</Text>
+                      </View>
+                      <TouchableOpacity>
                 <FontAwesome name="bookmark" size={22} color="#FFD700" />
-              </TouchableOpacity>
-            </View>
+                      </TouchableOpacity>
+                    </View>
             <View style={styles.cardContent}>
               <Text style={styles.foodTitle}>gà nướng gia vị với cơm hương vị</Text>
             </View>
           </View>
-          {/* Card 3 */}
-          <View style={styles.card}>
-            <Image
+            {/* Card 3 */}
+            <View style={styles.card}>
+                <Image
               source={{ uri: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?q=80&w=2025&auto=format&fit=crop" }}
-              style={styles.cardImage}
-            />
+                  style={styles.cardImage}
+                />
             <View style={styles.overlayTop}>
-              <View style={styles.ratingContainer}>
+                  <View style={styles.ratingContainer}>
                 <FontAwesome name="star" size={12} color="#FFD700" />
-                <Text style={styles.ratingText}>4.0</Text>
-              </View>
-              <TouchableOpacity>
+                    <Text style={styles.ratingText}>4.0</Text>
+                      </View>
+                      <TouchableOpacity>
                 <FontAwesome name="bookmark" size={22} color="#FFD700" />
-              </TouchableOpacity>
-            </View>
+                      </TouchableOpacity>
+                    </View>
             <View style={styles.cardContent}>
               <Text style={styles.foodTitle}>Cơm chiên cay trộn gà bali</Text>
               <View style={styles.timeRow}>
@@ -74,28 +74,28 @@ export default function BookmarkScreen() {
               </View>
             </View>
           </View>
-          {/* Card 4 */}
-          <View style={styles.card}>
-            <Image
+            {/* Card 4 */}
+            <View style={styles.card}>
+                <Image
               source={{ uri: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?q=80&w=2070&auto=format&fit=crop" }}
-              style={styles.cardImage}
-            />
+                  style={styles.cardImage}
+                />
             <View style={styles.overlayTop}>
-              <View style={styles.ratingContainer}>
+                  <View style={styles.ratingContainer}>
                 <FontAwesome name="star" size={12} color="#FFD700" />
-                <Text style={styles.ratingText}>3.0</Text>
+                    <Text style={styles.ratingText}>3.0</Text>
               </View>
               <TouchableOpacity>
                 <FontAwesome name="bookmark" size={22} color="#FFD700" />
               </TouchableOpacity>
-            </View>
+              </View>
             <View style={styles.cardContent}>
               <Text style={styles.foodTitle}>Lamb chops with fruity couscous and mint</Text>
             </View>
           </View>
         </View>
       </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
   );
 }
 

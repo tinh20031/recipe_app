@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   View,
   Text,
@@ -6,56 +6,35 @@ import {
   Image,
   ScrollView,
   TouchableOpacity,
+  Alert,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { useRouter } from "expo-router";
-import { getRecipes, toggleFavorite } from "../../services/recipes";
 import CategoryFilterModal from "../../components/CategoryFilterModal";
 import { useIsFocused } from "@react-navigation/native";
+import { observer } from "mobx-react-lite";
+import { HomeViewModel } from "../../src/viewmodels/HomeViewModel";
 
-interface Recipe {
-  id: string;
-  title: string;
-  category: string;
-  image?: string;
-  is_favorite?: boolean;
-}
+const viewModel = new HomeViewModel();
 
-export default function HomeScreen() {
+export default observer(function HomeScreen() {
   const router = useRouter();
-  const [showFilter, setShowFilter] = useState(false);
-  const [selectedCategory, setSelectedCategory] = useState("Tất cả");
-  const [recipes, setRecipes] = useState<Recipe[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [showFilter, setShowFilter] = React.useState(false);
   const isFocused = useIsFocused();
-
-  const fetchRecipes = async () => {
-    setLoading(true);
-    try {
-      const data = await getRecipes();
-      setRecipes(data);
-    } catch (e) {
-      alert("Lỗi tải dữ liệu!");
-    }
-    setLoading(false);
-  };
 
   useEffect(() => {
     if (isFocused) {
-      fetchRecipes();
+      viewModel.fetchRecipes();
     }
   }, [isFocused]);
 
-  const handleToggleFavorite = async (id: string, isFavorite?: boolean) => {
-    await toggleFavorite(id, !isFavorite);
-    fetchRecipes();
-  };
-
-  // Lọc recipes theo category
-  const filteredRecipes = selectedCategory === "Tất cả"
-    ? recipes
-    : recipes.filter(r => r.category === selectedCategory);
+  useEffect(() => {
+    if (viewModel.error) {
+      Alert.alert("Lỗi", viewModel.error);
+      viewModel.clearError();
+    }
+  }, [viewModel.error]);
 
   return (
     <ScrollView style={styles.container}>
@@ -98,19 +77,18 @@ export default function HomeScreen() {
           visible={showFilter}
           onClose={() => setShowFilter(false)}
           onApply={(cat: string) => {
-            setSelectedCategory(cat);
+            viewModel.setSelectedCategory(cat);
             setShowFilter(false);
-            // fetchRecipes(); // Nếu muốn reload lại dữ liệu trước khi filter
           }}
-          selectedCategory={selectedCategory}
+          selectedCategory={viewModel.selectedCategory}
         />
         {/* Danh sách món ăn */}
         <View style={{ marginTop: 30, paddingHorizontal: 30, marginBottom: 30 }}>
           <Text style={styles.sectionTitle}>Danh sách món ăn</Text>
-          {loading ? (
+          {viewModel.loading ? (
             <Text>Đang tải...</Text>
           ) : (
-            filteredRecipes.map((recipe) => (
+            viewModel.filteredRecipes.map((recipe) => (
               <View key={recipe.id} style={styles.recipeCard}>
                 <View style={styles.recipeImageContainer}>
                   {recipe.image && (
@@ -120,7 +98,7 @@ export default function HomeScreen() {
                     <Text style={styles.recipeTitle}>{recipe.title}</Text>
                     <Text style={styles.recipeTime}>{recipe.category}</Text>
                   </View>
-                  <TouchableOpacity onPress={() => handleToggleFavorite(recipe.id, recipe.is_favorite)}>
+                  <TouchableOpacity onPress={() => viewModel.handleToggleFavorite(recipe.id, recipe.is_favorite)}>
                     <FontAwesome
                       name={recipe.is_favorite ? "heart" : "heart-o"}
                       size={24}
@@ -135,7 +113,7 @@ export default function HomeScreen() {
       </SafeAreaView>
     </ScrollView>
   );
-}
+});
 
 const styles = StyleSheet.create({
   container: {

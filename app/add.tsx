@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { addRecipe } from "../services/recipes";
+import { addRecipe } from "../src/services/recipes";
 import { useRouter } from "expo-router";
 import * as ImagePicker from 'expo-image-picker';
 import { Picker } from "@react-native-picker/picker";
