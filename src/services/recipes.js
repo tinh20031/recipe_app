@@ -1,4 +1,4 @@
-import { supabase } from '../supabaseClient';
+import { supabase } from './supabaseClient';
 
 // Lấy danh sách recipes
 export async function getRecipes() {

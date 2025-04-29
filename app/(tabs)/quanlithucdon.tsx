@@ -11,7 +11,7 @@ import {
 import { useRouter } from "expo-router";
 import { FontAwesome } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { getRecipes, addRecipe, deleteRecipe } from "../../services/recipes";
+import { getRecipes, addRecipe, deleteRecipe } from "../../src/services/recipes";
 import { useIsFocused } from "@react-navigation/native";
 
 interface Recipe {
